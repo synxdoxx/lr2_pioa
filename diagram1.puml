@@ -1,0 +1,87 @@
+@startuml
+class User {
+  +name: String
+  +hp: Int
+  +max_hp: Int
+  +attack: Int
+  +defense: Int
+  +artifacts: List
+
+}
+User : print_stats(username)
+User : take_damage(username, dmg)
+User : add_artifact(username, art_name)
+
+class Boss{
+  +name: String
+  +hp: Int
+  +max_hp: Int
+  +strength: Int
+}
+
+
+Boss : take_damage(mob_name, dmg)
+Boss : attack(mob_name, target)
+Boss : strong_attack(mob_name, target)
+
+User ..|> Warrior
+User ..|> Healer
+User ..|> Mage
+
+class Warrior{
++stamina: Int
+}
+Warrior : strong_attack(username, target)
+
+class Healer{
++hp_restored: Inta
+}
+Healer : heal(name)
+
+class Mage{
++mana: Int
+}
+Mage : cast_spell()
+
+class Artifacts
+Artifacts ..|> Rat_on_a_stick
+Artifacts ..|> Warm_coat
+Artifacts ..|> Chiikawa
+Artifacts : get_random_artifact()
+Artifacts : return_artifact(art_name)
+
+class Rat_on_a_stick{
+  +additional_damage: Int
+}
+
+class Warm_coat{
+  +additional_defense: Int
+}
+
+class Chiikawa{
+  +additional_damage: Int
+  +additional_defense: Int
+}
+
+class Game{
++artifact_bank: Artifacts
++player: Character
++game_active: Bool
+
+}
+
+Game : load_arts()
+Game : death_check(mob)
+Game : save_game()
+Game : save_game_sys()
+Game : save_game_sys_FOR_BATTLE()
+Game : load_game()
+Game : load_game_sys()
+Game : battle(mob)
+Game : story()
+
+
+
+
+
+@enduml
