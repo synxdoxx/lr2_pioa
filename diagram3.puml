@@ -1,0 +1,24 @@
+[story] --> [load_arts]
+note left of load_arts : Загружает доступные артефакты в базу
+[story] --> [load_game_sys]
+[story] --> [save_game_sys]
+[story] --> [print_stats]
+[story] --> [save_game]
+[story] --> [add_artifact]
+[story] --> [death_check]
+note left of death_check : функция, проверяющая состояние персонажей и мобов
+
+
+[death_check] --> [battle] 
+note left of battle : функция боя, возвращает True или False в зависимости от исхода
+
+[battle] --> [print_stats]
+[battle] --> [random.randint]
+[battle] --> [save_game_sys_FOR_BATTLE]
+[battle] --> [get_random_artifact]
+note left of get_random_artifact : Выдает радомный артефакт игроку
+[battle] --> [add_artifact]
+note left of add_artifact : Выдает определенный артефакт игроку
+
+
+@enduml
