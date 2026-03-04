@@ -1,0 +1,57 @@
+@startuml
+entity Users{
+  +id: Int <b>PK</b>
+  +username: Text
+  +type_id: Int <b>FK</b>
+  +hp: Int
+  +max_hp: Int
+  +attack: Int
+  +defense: Int
+}
+
+entity Save_files{
+  +id: Int <b>PK</b>
+  +user_id: Int <b>FK</b>
+  +game_stage_id: Int <b>FK</b>
+  +time_played: Time
+}
+
+entity Game_stage{
+  +id: Int <b>PK</b>
+  +name: Text
+  +location: Text
+  +local_boss_id: Int <b>FK</b>
+}
+
+entity Character_types{
+  +id: Int <b>PK</b>
+  +type_name: Text
+}
+
+entity Boss{
+  +id: Int <b>PK</b>
+  +name: Text
+  +hp: Int
+  +max_hp: Int
+  +strength: Int
+}
+
+entity Artifact_list{
+  +id: Int <b>PK</b>
+  +name: Text
+  +effect: Text
+}
+
+entity Artifact_rec{
+  +id: Int <b>PK</b>
+  +artifact_id: Int <b>FK</b>
+  +user_id: Int <b>FK</b>
+}
+
+Users::type_id--> Character_types::id
+Artifact_rec::user_id --> Users::id
+Artifact_rec::artifact_id --> Artifact_list::id
+Game_stage::local_boss_id --> Boss::id
+Save_files::user_id --> Users::id
+Save_files::game_stage_id --> Game_stage::id
+@enduml
