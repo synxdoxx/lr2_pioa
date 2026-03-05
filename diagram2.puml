@@ -1,0 +1,64 @@
+@startuml
+actor Charter
+package Menumain {
+  usecase "Вход" as men1
+  usecase "Регистрация" as men2
+  usecase "Новая игра" as men3
+  usecase "Cохранение" as men4
+  usecase "Cтатистикa" as men5
+  usecase "Выход" as men6
+  Charter --> men1
+  Charter --> men2
+  men2 --> men1
+  men1 --> men3
+  men1 --> men4
+  men1 --> men5
+  men1 --> men6
+}
+usecase "Придумай имя" as name
+  men3 --> name
+package Team {
+    actor "Healer" as ch_1
+    actor "Warrior" as ch_2
+    actor "Mage" as ch_3
+usecase "Выбор персонажа" as pers
+    pers --> ch_1
+    pers --> ch_2
+    pers --> ch_3
+name --> pers
+}
+    usecase "Ветка 1" as tr1
+    usecase "Ветка 2" as tr2
+    usecase "Ветка 3" as tr3
+    usecase "Сохранение" as tr4
+Team --> tr1
+Team --> tr2
+Team --> tr3
+Team --> tr4
+ usecase "Конец" as fin1
+
+
+usecase "История" as his1
+tr1 --> his1
+usecase "Бой: Монстр 1" as his2
+his1 --> his2
+
+usecase "История" as his4
+his2 --> his4
+usecase "Битва: Монстр 2" as his5
+his4 --> his5
+
+usecase "История" as his6
+tr2 --> his6
+usecase "Битва: Монстр 1" as his7
+his6 --> his7
+usecase "История" as his8
+his7 --> his8
+his5 -> fin1
+
+usecase "Битва: Монстр 2" as his9
+his8 --> his9
+his9 -> fin1
+usecase "История" as his10
+his10 --> fin1
+@enduml
