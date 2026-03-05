@@ -60,5 +60,6 @@ usecase "Битва: Монстр 2" as his9
 his8 --> his9
 his9 -> fin1
 usecase "История" as his10
+tr3 --> his10
 his10 --> fin1
 @enduml
